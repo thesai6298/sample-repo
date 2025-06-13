@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1a187c96-b1b1-4f72-8ee3-1e6e44005efe" >
+		<http:listener-connection host="localhost" port="8082" />
+	</http:listener-config>
+	<flow name="body-task-realtimeFlow" doc:id="46997433-84a2-47e3-a9af-a91262d4964c" >
+		<http:listener doc:name="Listener" doc:id="5fd70a5c-48f7-4090-b5e6-727b0d29a320" config-ref="HTTP_Listener_config" path="/bodyd"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6712e23d-d8b0-490c-8614-b15f060bbe60" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a67e6d45-802f-4cdd-ac02-b2aca0ce3387" message="#[payload.booking_num]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="75ad72c5-57d4-4931-99f6-9adfb4c72bf5" message="#[payload.freight_forwarder] and #[payload.container_type]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f530c2a8-f115-4fdf-9c9e-4e4c53626b37" />
+		<logger level="INFO" doc:name="Logger" doc:id="66faf485-2cd0-4e7a-9cb5-78e7195793c3" />
+	</flow>
+</mule>
